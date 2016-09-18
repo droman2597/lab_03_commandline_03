@@ -1,124 +1,353 @@
 Lab - Permissions, Editing Text, Date and Time
-==========
-Follow the instructions line-by-line.  
 
-* Type in the commands as is, but ignore the beginning prompt.  
-* Enter, tab, up and down are represented by <ENTER><TAB>,<UP> and <DOWN>.  
+==========
+
+Follow the instructions line-by-line. 
+
+ 
+
+* Type in the commands as is, but ignore the beginning prompt. 
+
+* Enter, tab, up and down are represented by <ENTER><TAB>,<UP> and <DOWN>. 
+
 * "No output" or "nothing happens" are valid answers to any of the questions.
-==========
-
 
 ==========
+
+ 
+
+ 
+
+==========
+
 We're going to be writing a shell script.  First, though... let's figure out what day and time it is!
-==========
 
 ==========
+
+ 
+
+==========
+
 1. What day and time is it?
 
+ 
+
 What command did you use, and what was its output?
+
 ----------
 
+ent-v314-016:~ student$ time date
 
+Wed Sep 14 12:26:16 EDT 2016
+
+ 
+
+real 0m0.002s
+
+user 0m0.001s
+
+sys 0m0.001s
+
+ 
+
+ 
+
+ 
+
+ 
 
 ==========
+
 2. Print out a calendar for this month.
 
+ 
+
 What command did you use, and what was its output?
+
 ----------
 
+ent-v314-016:mtec1002-lab-03 student$ cal
 
+   September 2016
+
+Su Mo Tu We Th Fr Sa
+
+             1  2  3
+
+ 4  5  6  7  8  9 10
+
+11 12 13 14 15 16 17
+
+18 19 20 21 22 23 24
+
+25 26 27 28 29 30
+
+ 
+
+ 
+
+ 
 
 ==========
+
 3. Go to your home directory.  Verify that you're in your home directory.
 
+ 
+
 What commands did you use to do this?
+
 ----------
 
+cd ~
 
+ 
+
+ 
 
 ==========
+
 4. Create an empty file called copy_to_backup.sh.  Verify that the file exists.
 
+ 
+
 What commands did you use to do this?
+
 ----------
 
+touch
 
+ 
+
+ 
 
 ==========
+
 5. What are the permissions on your copy_to_backup.sh.
 
+ 
+
 What command did you use to find the permissions?
+
 ----------
 
+ent-v314-016:~ student$ ls -l copy_to_backup.sh
 
+-rw-r--r--  1 student  staff  0 Sep 14 12:27 copy_to_backup.sh
+
+ 
+
+ 
+
+ 
 
 ==========
+
 6. Change the permissions so that this file is executable by the user.  Verify the new permissions.
 
+ 
+
 What commands did you use to do this?  What was the output?
+
 ----------
 
+ent-v314-016:~ student$ chmod u+x
 
+usage: chmod [-fhv] [-R [-H | -L | -P]] [-a | +a | =a  [i][# [ n]]] mode|entry file ...
+
+chmod [-fhv] [-R [-H | -L | -P]] [-E | -C | -N | -i | -I] file ...
+
+ent-v314-016:~ student$
+
+ 
+
+ 
+
+ 
+
+ 
 
 ==========
+
 7. Try executing the file!
+
+ 
 
 $ ./copy_to_backup.sh
 
+ 
+
 What command did you use to try to execute the file?  What happens?
+
 ----------
 
+ent-v314-016:~ student$ ./copy_to_backup.sh
 
+-bash: ./copy_to_backup.sh: Permission denied
+
+ 
+
+ 
+
+ 
 
 ==========
+
 8. Open the file with nano
 
+ 
+
 What command did you use to do this?
+
 ----------
 
+nano
 
+ 
+
+ 
 
 ==========
+
 9. In your file, write the following commands:
 
+ 
+
 a. create a directory called backup in your home directory... use the -p flag!
+
 b. copy all of the files txt files in the current directory to the backup directory (use *.txt)
+
 c. print out "I'm done backing up"
 
+ 
+
 Write out the code in your file below...
+
 ----------
 
+ 
 
+#!/bin/bash
+
+mkdir backup
+
+cp -r
+
+echo "I'm done backing up"
+
+ 
+
+ 
 
 ==========
+
 10. Create a directory in your home called test
+
 ----------
+
 ==========
+
 11. Go into that directory and create two empty files... 1.txt and 2.txt
 
+ 
+
 What commands did you use to do this?
+
 ----------
 
+ent-v314-016:~ student$ mkdir test
 
+ent-v314-016:~ student$ cd test
+
+ent-v314-016:test student$ touch 1.txt
+
+ent-v314-016:test student$ touch 2.txt
+
+ent-v314-016:test student$ ls
+
+1.txt 2.txt
+
+ 
+
+ 
 
 ==========
+
 12. Move the script that you created into this directory.
 
+ 
+
 What commands did you use to do this?
+
 ----------
 
+ent-v314-016:test student$ mv copy_to_backup.sh
 
+usage: mv [-f | -i | -n] [-v] source target
+
+       mv [-f | -i | -n] [-v] source ... directory
+
+ent-v314-016:test student$ ls
+
+1.txt    copy_to_backup.sh.save
+
+2.txt    copy_to_backup.sh.save.1
+
+ 
+
+ 
 
 ==========
+
 13. Run your script.
 
+ 
+
 What commands did you use to do this?
+
 ----------
 
+Chmod
 
+ 
+
+ 
 
 ==========
+
 14. Verify that a backup folder was created in your home directory... with copies of the files present.
 
+ 
+
 What commands did you use to do this?  Show the output.
+
 ----------
+
+ent-v314-016:~ student$ ls
+
+Adlm   Music   filename.txt
+
+Adobe   Pictures  isus
+
+Applications  Public   mtec1002-lab-03
+
+Desktop   Things   mtec1002-lab-03.tar.gz
+
+Documents  __MACOSX  pymel.log
+
+Downloads  copy_to_backup.sh stuff
+
+Library   copy_to_backup.sh.save test
+
+MPLABXProjects  ent-v314-016:~.save xgen
+
+Movies   ent-v314-016:~.save.1
+
+ 
+
+ent-v314-016:~ student$ ls -l copy_to_backup.sh
+
+-rw-r--r--  1 student  staff  59 Sep 14 13:15 copy_to_backup.sh
+
+ent-v314-016:~ student$ ls -l ent-v314-016:~.save.1
+
+-rw-------  1 student  staff  46 Sep 14 12:51 ent-v314-016:~.save.1
